@@ -1,0 +1,25 @@
+{
+  "booktagram": { "ar": "بوكتجرام", "en": "Booktagram" },
+  "header_text": {
+    "ar": "موقع مخصص لعشاق القراءة يمكّنهم من متابعة الأخبار الثقافية والأحداث التي تجري في المنطقة ، ويمكن إنشاء مجموعات قراءة ، ويمكن شراء الكتب المستعملة وبيعها",
+    "en": "A site dedicated to reading lovers that enables them to follow cultural news and events taking place in the region Reading groups can be establishedand used books can be bought and sold"
+  },
+  "nav_home": {
+    "en": "Home",
+    "ar": "الصفحة الرئيسة"
+  },
+  "nav_news": { "en": "News", "ar": "أخبار" },
+  "nav_events": { "en": "Events", "ar": "الندوات" },
+  "nav_about": { "en": "About", "ar": "حول" },
+  "nav_shop": { "en": "Shop", "ar": "المتجر" },
+  "nav_club": { "en": "Club", "ar": "نوادي القراءة" },
+  "nav_login": { "en": "Log in", "ar": "تسجيل دخول" },
+  "nav_signup": { "en": "Sign up", "ar": "اشترك" },
+  "nav_guide": { "en": "Guide", "ar": "دليل" },
+  "nav_contactus": { "en": "Contant Us", "ar": "اتصل بيا" },
+  "nav_profile": { "en": "Profile", "ar": "الملف الشخصي" },
+  "nav_message": { "en": "Message", "ar": "الرسائل" },
+  "nav_accountSetting": { "en": "Account Settings", "ar": "الاعدادت الشخصية" },
+  "nav_mybooks": { "en": "My books", "ar": "تسجيل الخروج" },
+  "nav_logout": { "en": "Logout", "ar": "كتبي" }
+}

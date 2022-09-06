@@ -1,0 +1,59 @@
+@import '../../styles/abstract/colors';
+@import '../../styles/abstract/variables';
+
+.Event {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  padding-left: 3rem;
+  border-radius: 8px;
+  box-shadow: $box-shadow-sm;
+  min-height: 7.5rem;
+  // min-width: 60%;
+  // max-width: 90%;
+  width: 60%;
+  justify-content: flex-start;
+  gap: 2rem;
+  position: relative;
+  &__Day,
+  &__Month {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &__Month {
+    color: $color-primary;
+  }
+
+  &__CalendarIcon {
+      font-size: 1.5rem;
+  }
+
+  &__DayAndMonth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__TextContainer {
+    padding: 0 1.5rem;
+  }
+  &__Title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  &__Text {
+    span {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.Divider {
+  background-color: $color-grey;
+  width: 3px;
+  height: 80%;
+}
