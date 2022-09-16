@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classes from './Nav.module.scss';
 import Link from 'next/link';
-// import { setAuthModalOpen } from '../../store/auth/action';
+// import { setAuthModalOpen } from '../../storeRedux/auth/action';
 // import { useDispatch } from 'react-redux';
 import LoginModal from '../LoginModal/LoginModal';
 import Logo from '../../assests/logo.png';
@@ -90,7 +90,7 @@ const Nav = () => {
           <Navitem to='/contactus' translationId='nav_contactus' />
         </ul>
       </div>
-      <LoginModal />
+      {/* <LoginModal /> */}
 
       <div className={classes.navBtns}>
         {/* <Button style={{ marginRight: '5px' }} onClick={signUpOpen}>
@@ -99,7 +99,7 @@ const Nav = () => {
         <Button variant='outline' onClick={signInOpen}>
           {f('nav_login')}
         </Button> */}
-        <NavLang />
+        {/* <NavLang /> */}
       </div>
     </div>
   );

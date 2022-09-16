@@ -6,22 +6,71 @@ import { withTRPC } from '@trpc/next';
 import { SessionProvider } from 'next-auth/react';
 import { NextIntlProvider } from 'next-intl';
 import type { AppType } from 'next/dist/shared/lib/utils';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import superjson from 'superjson';
 import type { AppRouter } from '../server/router';
 import '../styles/globals.scss';
+import '../components/SplashScreen/SplashScreen.scss';
+import SplashScreen from '@/components/SplashScreen/SplashScreen';
+import { useStore } from '@/store';
+import Head from 'next/head';
+import { GetServerSidePropsContext } from 'next';
+
+const removeLocaleFromUrl: (
+  url: string,
+  locale: string | undefined
+) => string = (url, locale) => {
+  console.log(url);
+  return url === `/${locale}` ? '/' : url?.replace(`/${locale}`, '');
+};
 
 const MyApp: AppType = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const router = useRouter();
+
+  const setLoading = useStore((state) => state.setLoading);
+
+  // useEffect(() => {
+  //   const handleStart = (url: string) =>
+  //     removeLocaleFromUrl(url, router?.locale) !== router.asPath &&
+  //     setLoading(true);
+  //   const handleComplete = (url: string) =>
+  //     removeLocaleFromUrl(url, router?.locale) === router.asPath &&
+  //     setLoading(false);
+
+  //   router.events.on('routeChangeStart', handleStart);
+  //   router.events.on('routeChangeComplete', handleComplete);
+  //   router.events.on('routeChangeError', handleComplete);
+
+  //   return () => {
+  //     router.events.off('routeChangeStart', handleStart);
+  //     router.events.off('routeChangeComplete', handleComplete);
+  //     router.events.off('routeChangeError', handleComplete);
+  //   };
+  // });
   return (
-    <SessionProvider session={session}>
-      <ChakraProvider>
-        <NextIntlProvider messages={pageProps.messages}>
-          <Component {...pageProps} />
-        </NextIntlProvider>
-      </ChakraProvider>
-    </SessionProvider>
+    <>
+      <Head>
+        <link
+          rel='stylesheet'
+          href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
+          integrity='sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=='
+          crossOrigin='anonymous'
+          referrerPolicy='no-referrer'
+        />
+      </Head>
+      <SessionProvider session={session}>
+        <ChakraProvider>
+          <NextIntlProvider messages={pageProps.messages}>
+            <SplashScreen />
+            <Component {...pageProps} />
+          </NextIntlProvider>
+        </ChakraProvider>
+      </SessionProvider>
+    </>
   );
 };
 

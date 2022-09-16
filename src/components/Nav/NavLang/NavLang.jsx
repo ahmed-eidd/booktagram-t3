@@ -1,7 +1,7 @@
 import React from 'react';
 import Select from 'react-select';
 import { colors } from '../../../styles/abstract/colors';
-// import { changeLocaleAction } from '../../../store/locale/action';
+// import { changeLocaleAction } from '../../../storeRedux/locale/action';
 import { useRouter } from 'next/router';
 
 const NavLang = () => {

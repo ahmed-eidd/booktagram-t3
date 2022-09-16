@@ -1,19 +1,33 @@
 import React from 'react';
-import { useField } from 'formik';
+import { useField, FieldHookConfig } from 'formik';
 import {
   // FormControl,
   // FormLabel,
   // FormErrorMessage,
   Input,
+  InputProps,
 } from '@chakra-ui/react';
 import FormControl from '../FormControl/FormControl';
 import classes from './InputField.module.scss';
 
-const InputField = ({
+interface InputFieldProps {
+  labelStyle?: React.CSSProperties;
+  label?: string;
+  placeholder?: string;
+  type?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  errorMessage?: string;
+  inputStyle?: React.CSSProperties;
+}
+
+const InputField: React.FC<
+  InputFieldProps & InputProps & FieldHookConfig<string>
+> = ({
   labelStyle,
   label,
   placeholder,
-  type,
+  type = 'text',
   className,
   inputStyle,
   style,
@@ -39,7 +53,7 @@ const InputField = ({
         placeholder={placeholder}
         style={{
           borderColor: error && '#E53E3E !important',
-          ...inputStyle
+          ...inputStyle,
         }}
         className={[
           error ? [classes.Input, classes.InputError].join(' ') : classes.Input,

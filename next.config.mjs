@@ -3,8 +3,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const __dirname = dirname(__filename);
 /**
  * Don't be scared of the generics here.
  * All they do is to give us autocompletion when using this.
@@ -18,13 +18,20 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
-  reactStrictMode: true,
-  swcMinify: true,
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-  },
   i18n: {
-    locales: ['en', 'ar'],
+    locales: ['ar', 'en'],
     defaultLocale: 'ar',
   },
 });
+
+// module.exports = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+//   sassOptions: {
+//     includePaths: [path.join(__dirname, 'styles')],
+//   },
+//   i18n: {
+//     locales: ['en', 'de'],
+//     defaultLocale: 'en',
+//   },
+// };

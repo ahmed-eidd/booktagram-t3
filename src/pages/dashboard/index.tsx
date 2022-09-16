@@ -1,17 +1,16 @@
+import Dashboard from '@/components/Dashboard/Dashboard';
 import { GetServerSidePropsContext } from 'next';
+import React from 'react';
 
-import Header from '@/components/Pages/Home/Header/Header';
-import AboutSection from '@/components/Pages/Home/AboutSection/AboutSection';
-import Layout from '@/components/Layout/Layout';
-
-export default function Home() {
+const dashboard = () => {
   return (
-    <Layout>
-      <Header />
-      <AboutSection />
-    </Layout>
+    <Dashboard>
+      <div>Hello world</div>
+    </Dashboard>
   );
-}
+};
+
+export default dashboard;
 
 export async function getServerSideProps({
   locale,
@@ -21,7 +20,7 @@ export async function getServerSideProps({
       // You can get the messages from anywhere you like. The recommended
       // pattern is to put them in JSON files separated by language and read
       // the desired one based on the `locale` received from Next.js.
-      messages: (await import(`../content/locale/${locale}.json`)).default,
+      messages: (await import(`../../content/locale/${locale}.json`)).default,
     },
   };
 }

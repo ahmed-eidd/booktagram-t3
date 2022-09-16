@@ -1,5 +1,6 @@
 import Footer from '../Footer/Footer';
 import Nav from '../Nav/Nav';
+import SplashScreen from '../SplashScreen/SplashScreen';
 import classes from './Layout.module.scss';
 
 interface LayoutProps {
@@ -8,12 +9,15 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div>
-      <Nav />
-      <div className={classes.container}>{children}</div>
-      <Footer />
-    </div>
+    <>
+      <div>
+        <Nav />
+        <div className={classes.container}>{children}</div>
+        <Footer />
+      </div>
+    </>
   );
 };
 
 export default Layout;
+

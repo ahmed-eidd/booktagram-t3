@@ -1,15 +1,16 @@
-import { Divider, Flex, Stack } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
+import Link from 'next/link';
 import React from 'react';
 import classes from './Event.module.scss';
 
 interface EventProps {
-  day: string;
-  month: string;
-  date: string;
-  title: string;
+  day?: string;
+  month?: string;
+  date?: string;
+  title?: string;
   description?: string;
-  location: string;
-  children: React.ReactNode;
+  location?: string;
+  id?: number | string;
 }
 
 const Event: React.FC<EventProps> = ({
@@ -19,7 +20,7 @@ const Event: React.FC<EventProps> = ({
   title,
   description,
   location,
-  children,
+  id = 'ss',
 }) => {
   return (
     <div className={classes.Event}>
@@ -32,7 +33,8 @@ const Event: React.FC<EventProps> = ({
       <div className={classes.Event__TextContainer}>
         <h4 className={classes.Event__Title}>{title || 'Event Title'}</h4>
         <p className={classes.Event__Text}>
-          <span>Location:</span>[ location || Cairo, Egypt ]
+          <span>Location:</span>
+          {location || 'Cairo, Egypt'}
         </p>
         <p className={classes.Event__Text}>
           <span>Time:</span>
@@ -43,7 +45,12 @@ const Event: React.FC<EventProps> = ({
           Random Name
         </p>
       </div>
-      {children}
+      {/* <Link href={`/event/${id}`}>
+        <a className={classes.Event__LearnMore}>Learn More</a>
+      </Link> */}
+      <Link href={`events/${id}`}>
+        <a className={classes.Event__Link}></a>
+      </Link>
     </div>
   );
 };

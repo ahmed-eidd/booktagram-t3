@@ -7,66 +7,55 @@ import InputField from '../Form/InputField/InputField';
 import Modal from '../Modal/Modal';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-// import { loginUser, signUpUser } from '../../store/auth/slice';
+// import { loginUser, signUpUser } from '../../storeRedux/auth/slice';
 // import { useDispatch, useSelector } from 'react-redux';
 import classes from './LoginModal.module.scss';
 // import { useFirebase } from 'react-redux-firebase';
 import { useToast } from '@chakra-ui/react';
-// import { loginUserAction } from '../../store/auth/action';
-// import { setAuthModalClose, setAuthModalOpen } from '../../store/auth/action';
+// import { loginUserAction } from '../../storeRedux/auth/action';
+// import { setAuthModalClose, setAuthModalOpen } from '../../storeRedux/auth/action';
+import { signIn as nextAuthSignIn } from 'next-auth/react';
+import { trpc } from '@/utils/trpc';
 
 const SIGN_IN = 'signin';
 const SIGN_UP = 'signup';
 
-const LoginModal = ({ tab, open, close }) => {
-  // const LoginModal = () => {
-  const [tabSwitch, setTabSwitch] = useState('');
-  // const dispatch = useDispatch();
+interface LoginModalProps {
+  tab?: typeof SIGN_IN | typeof SIGN_UP;
+  open: boolean;
+  close?: () => void;
+}
+
+const LoginModal: React.FC<LoginModalProps> = ({ tab, open, close }) => {
+  const [tabSwitch, setTabSwitch] = useState<typeof SIGN_IN | typeof SIGN_UP>(
+    SIGN_IN
+  );
+  const createUserMutation = trpc.useMutation(['auth.signup']);
   const toast = useToast();
-  // const firebase = useFirebase();
-  // const loading = useSelector((state) => state.auth.loading);
-  // const tab = useSelector((state) => state.auth.modal);
-  // const close = () => {
-  //   dispatch(setAuthModalClose())
-  // }
 
+  // TODO: Create login functions
   const createNewUser = ({ email, password, firstName, lastName }) => {
-    // firebase
-    //   .createUser({ email, password }, { email, firstName, lastName })
-    //   .then(() => {
-    //     toast({
-    //       position: 'top-right',
-    //       status: 'success',
-    //       title: 'Sign up Success',
-    //       isClosable: true,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     toast({
-    //       position: 'top-right',
-    //       status: 'error',
-    //       title: err.message,
-    //       isClosable: true,
-    //     });
-    // });
+    createUserMutation.mutate({
+      email: email,
+      password: password,
+      username: firstName + lastName,
+    });
   };
 
-  const loginWithGoogle = () => {
-    // return firebase.login({ provider: 'google', type: 'popup' });
-  };
+  // const loginWithGoogle = () => {
 
-  useEffect(() => {
-    setTabSwitch(tab);
-  }, [tab]);
+  // };
+
+  // useEffect(() => {
+  //   setTabSwitch(tab);
+  // }, [tab]);
 
   const onSignInSwitch = () => {
-    // dispatch(setAuthModalOpen(SIGN_IN));
-    console.log(tab);
+    setTabSwitch(SIGN_IN);
   };
 
   const onSignUpSwitch = () => {
-    // setTabSwitch(SIGN_UP);
-    // dispatch(setAuthModalOpen(SIGN_UP))
+    setTabSwitch(SIGN_UP);
   };
 
   const signInSchema = yup.object({
@@ -85,10 +74,15 @@ const LoginModal = ({ tab, open, close }) => {
     <>
       <Formik
         validationSchema={signInSchema}
-        initialValues={signInSchema.cast()}
-        onSubmit={(values) => {
-          dispatch(loginUserAction(values));
-          console.log('submit');
+        initialValues={signInSchema.cast({})}
+        onSubmit={async (values) => {
+          // body.append('email', values.email);
+          // body.append('password', values.password);
+          await nextAuthSignIn('credentials', {
+            email: values.email,
+            password: values.password,
+            callbackUrl: '/',
+          });
         }}
       >
         {() => (
@@ -111,17 +105,17 @@ const LoginModal = ({ tab, open, close }) => {
               type='password'
               name='password'
             />
-            <Checkbox name='rememberMe' className={classes.Checked}>
+            {/* <Checkbox name='rememberMe' className={classes.Checked}>
               Keep me signed in
-            </Checkbox>
+            </Checkbox> */}
             <Button className={classes.Btn} type='submit'>
               Sign In
             </Button>
-            <h5 className={classes.Divider}>Or Sign In With</h5>
+            {/* <h5 className={classes.Divider}>Or Sign In With</h5>
             <div className={classes.Icons}>
               <i className='fab fa-facebook-f'></i>
-              <i className='fab fa-google' onClick={loginWithGoogle}></i>
-            </div>
+               <i className='fab fa-google' onClick={loginWithGoogle}></i> 
+            </div> */}
           </FormGroup>
         )}
       </Formik>
@@ -132,15 +126,10 @@ const LoginModal = ({ tab, open, close }) => {
     <>
       <Formik
         // validationSchema={signUpSchema}
-        initialValues={signUpSchema.cast()}
+        initialValues={signUpSchema.cast({})}
         onSubmit={(values) => {
           // dispatch(signUpUser(values))
-          createNewUser({
-            email: values.email,
-            password: values.password,
-            firstName: values.firstName,
-            lastName: values.lastName,
-          });
+          createNewUser(values);
           console.log('new user ');
         }}
       >
@@ -173,11 +162,11 @@ const LoginModal = ({ tab, open, close }) => {
             <Button type='submit' className={classes.Btn}>
               Sign Up
             </Button>
-            <h5 className={classes.Divider}>Or Sign In With</h5>
+            {/* <h5 className={classes.Divider}>Or Sign In With</h5>
             <div className={classes.Icons}>
               <i className='fab fa-facebook-f'></i>
               <i className='fab fa-google' onClick={onSignInSwitch}></i>
-            </div>
+            </div> */}
           </FormGroup>
         )}
       </Formik>
@@ -185,11 +174,7 @@ const LoginModal = ({ tab, open, close }) => {
   );
 
   return (
-    <Modal
-      isOpen={tab}
-      onClose={close}
-      //  loading={loading}
-    >
+    <Modal isOpen={open} onClose={() => console.log('clonsed')}>
       <div className={classes.Container}>
         {tabSwitch === SIGN_IN && signIn}
         {tabSwitch === SIGN_UP && signUp}

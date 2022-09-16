@@ -1,5 +1,12 @@
-@import 'index';
+@import '../../styles/index';
 
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .book {
   --color: #c92f2f;
   --duration: 6.8s;

@@ -17,7 +17,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   children,
   type = 'button',
-  to,
+  to = '',
   isLoading,
   variant = 'filled',
   onClick,

@@ -1,7 +1,7 @@
 import { fork } from 'redux-saga/effects';
-import gallerySaga from '../store/gallery/saga';
-import newsSaga from '../store/news/saga';
-import authSaga from '../store/auth/saga';
+import gallerySaga from '../storeRedux/gallery/saga';
+import newsSaga from '../storeRedux/news/saga';
+import authSaga from '../storeRedux/auth/saga';
 
 export default function* rootSaga() {
   yield fork(gallerySaga);

@@ -6,10 +6,31 @@ import {
   ModalBody,
   ModalCloseButton,
   Spinner,
+  ModalProps,
+  ModalBodyProps,
+  ModalFooterProps,
+  ModalOverlayProps,
+  ModalHeaderProps,
 } from '@chakra-ui/react';
 import classes from './Modal.module.scss';
 
-const Modal = ({ isOpen, onOpen, onClose, children, loading,title, size ='md' }) => {
+interface MyModalProps {
+  isOpen: boolean;
+  onClose?: () => void;
+  children: React.ReactNode;
+  loading?: boolean;
+  title?: string;
+  size?: 'lg' | 'md' | 'sm';
+}
+
+const Modal: React.FC<
+  MyModalProps &
+    ModalProps &
+    ModalBodyProps &
+    ModalFooterProps &
+    ModalHeaderProps &
+    ModalOverlayProps
+> = ({ isOpen, onClose, children, loading, title, size = 'md' }) => {
   const ModalClasses = [
     classes.ModalChildren,
     loading ? classes.ModalChildrenLoading : null,
@@ -25,11 +46,11 @@ const Modal = ({ isOpen, onOpen, onClose, children, loading,title, size ='md' })
       isOpen={isOpen}
       onClose={onClose}
       scrollBehavior='inside'
-      className={classes.Modal}
-      size={ size } 
+      // className={classes.Modal}
+      size={size}
     >
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent className={classes.Modal}>
         <ModalCloseButton
           className={classes.ModalCloseBtn}
           colorScheme='white'

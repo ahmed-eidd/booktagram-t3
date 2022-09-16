@@ -16,10 +16,11 @@
 }
 
 .ModalBtn {
-  color: $color-grey;
+  color: $color-primary;
   cursor: pointer;
   margin-left: 0.5rem;
   display: inline;
+  text-decoration: underline;
 }
 
 .Divider {

@@ -1,7 +1,9 @@
 @import '../../styles/index';
 
 .Modal {
-  border-radius: 0.8rem;
+  background-color: transparent !important;
+  overflow: hidden;
+  border-radius: 0.8rem !important;
   width: auto;
   &__Title {
     @include Title-lg(1rem, auto, 2rem, auto);
@@ -20,6 +22,8 @@
 
 .ModalBody {
   position: relative;
+  background-color: $color-secondary;
+  overflow: hidden;
 }
 
 .ModalChildren {

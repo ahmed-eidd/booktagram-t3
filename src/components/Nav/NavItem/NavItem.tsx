@@ -10,7 +10,7 @@ interface NavitemProps {
 }
 
 const Navitem: React.FC<NavitemProps> = ({ children, to, translationId }) => {
-  const t = useTranslations('');
+  const t = useTranslations();
   return (
     <li className={classes.NavItem}>
       {/* <NavLink activeClassName={classes.active} exact to={to}>{f(translationId) || children}</NavLink> */}

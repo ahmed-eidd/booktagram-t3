@@ -1,50 +1,53 @@
 import React from 'react';
 import classes from './Sidebar.module.scss';
-import { useIntl } from 'react-intl';
 import SidebarItem from '../SidebarItem/SidebarItem';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
+import { useTranslations } from 'next-intl';
 
 const Sidebar = () => {
-  const { formatMessage } = useIntl();
-  const f = (id) => formatMessage({ id });
+  const t = useTranslations('');
   return (
     <div className={classes.Sidebar}>
-      <ProfileIcon />
+      <ProfileIcon name='test' />
       <div className={classes.Links}>
         <ul className={classes.DashList}>
           <SidebarItem to='/' icon='fas fa-home'>
-            {f('nav_home')}
+            {t('nav_home')}
           </SidebarItem>
           <SidebarItem to='/myprofile' icon='fas fa-user'>
-            {f('nav_profile')}
+            {t('nav_profile')}
           </SidebarItem>
           <SidebarItem to='/mybooks' icon='fas fa-book'>
-            {f('nav_mybooks')}
+            {t('nav_mybooks')}
           </SidebarItem>
           <SidebarItem to='/clubs' icon='fas fa-users'>
-            {f('nav_club')}
+            {t('nav_club')}
           </SidebarItem>
           <SidebarItem to='/shop' icon='fas fa-shopping-cart'>
-            {f('nav_shop')}
+            {t('nav_shop')}
           </SidebarItem>
           <SidebarItem to='/events' icon='fas fa-calendar-day'>
-            {f('nav_events')}
+            {t('nav_events')}
+          </SidebarItem>
+          <SidebarItem to='dashboard/add-event' icon='fas fa-calendar-day'>
+            {/* for testing purposes PLEASAE ROMVE WHEN DONE */}
+            Add Event
           </SidebarItem>
           <SidebarItem to='/guide' icon='fas fa-book-open'>
-            {f('nav_guide')}
+            {t('nav_guide')}
           </SidebarItem>
           <SidebarItem to='/news' icon='fas fa-newspaper'>
-            {f('nav_news')}
+            {t('nav_news')}
           </SidebarItem>
           <SidebarItem to='/message' icon='far fa-envelope'>
-            {f('nav_message')}
+            {t('nav_message')}
           </SidebarItem>
 
           <SidebarItem to='/accountsetting' icon='fas fa-cog'>
-            {f('nav_accountSetting')}
+            {t('nav_accountSetting')}
           </SidebarItem>
           <SidebarItem to='/logout' icon='fas fa-sign-out-alt'>
-            {f('nav_logout')}
+            {t('nav_logout')}
           </SidebarItem>
         </ul>
       </div>

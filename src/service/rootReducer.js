@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 import { connectRouter } from 'connected-react-router';
-import authReducer from '../store/auth/slice';
-import localeReducer from '../store/locale/slice';
+import authReducer from '../storeRedux/auth/slice';
+import localeReducer from '../storeRedux/locale/slice';
 
 const rootReducer = (history) =>
   combineReducers({

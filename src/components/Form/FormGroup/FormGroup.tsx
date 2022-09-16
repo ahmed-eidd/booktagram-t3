@@ -2,7 +2,19 @@ import React from 'react';
 import { Form } from 'formik';
 import classes from './FormGroup.module.scss';
 
-const FormGroup = ({ children, title, className, formClassName }) => {
+interface FormGroupProps {
+  children: React.ReactNode;
+  title?: string;
+  className?: string;
+  formClassName?: string;
+}
+
+const FormGroup: React.FC<FormGroupProps> = ({
+  children,
+  title,
+  className,
+  formClassName,
+}) => {
   return (
     <>
       {title ? (
