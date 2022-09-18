@@ -9,17 +9,31 @@ import { verify } from 'argon2';
 import { loginSchema } from '@/common/validation/auth';
 
 export const authOptions: NextAuthOptions = {
+  session: {
+    strategy: 'jwt',
+  },
   // Include user.id on session
   callbacks: {
-    session({ session, user }) {
-      if (session.user) {
-        session.user.id = user.id;
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
       }
+
+      return token;
+    },
+    session: async ({ session, token }) => {
+      if (token) {
+        session.id = token.id;
+      }
+
       return session;
     },
   },
+
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'credentials',
@@ -31,7 +45,7 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         // const { email, password } = credentials;
         const creds: { email: string; password: string } =
           await loginSchema.parseAsync({
@@ -40,7 +54,7 @@ export const authOptions: NextAuthOptions = {
           });
 
         const user = await prisma.user.findFirst({
-          where: { email: 'omarbakry@noob.com' },
+          where: { email: creds.email },
         });
 
         if (!user) {
@@ -51,17 +65,14 @@ export const authOptions: NextAuthOptions = {
 
         const isValidPassword = await verify(user.password, creds.password);
 
-        console.log('test', isValidPassword);
         if (!isValidPassword) {
           return null;
         }
 
-        // return {
-        //   id: user.id,
-        //   email: user.email,
-        // };
         return {
-          message: 'Succes Login',
+          id: user.id,
+          email: user.email,
+          name: user.name,
         };
       },
     }),

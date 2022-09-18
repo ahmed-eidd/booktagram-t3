@@ -7,10 +7,8 @@ function* fetchNewsSaga ({payload}) {
   try {
     const response = yield call(api.fetchNews)
     yield put(fetchNewsSuccess(response.data.results))
-    console.log(response.data.results)
   } catch(error) {
     yield put(fetchNewsFail())
-    console.log(error)
   }
 }
 

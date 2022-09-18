@@ -7,21 +7,26 @@ interface SidebarItemProps {
   children: React.ReactNode;
   to: string;
   icon: string;
+  onClick?: () => void;
 }
 
-const SidebarItem: React.FC<SidebarItemProps> = ({ children, to, icon }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  children,
+  to,
+  icon,
+  onClick,
+}) => {
   const router = useRouter();
   const { pathname } = router;
   // const pathArr = pathname.split('/');
   let attachedClasses = [classes.DashItem].join('');
-  console.log(pathname, to);
   // if (pathname === to) {
   // if (pathArr.some((el) => `/${el}` === to) || pathname === to) {
   if (pathname === `/${to}`) {
     attachedClasses = [classes.DashItem, classes.active].join(' ');
   }
   return (
-    <li className={attachedClasses}>
+    <li className={attachedClasses} onClick={onClick}>
       {icon && <i className={icon}></i>}
 
       <Link href={to}>

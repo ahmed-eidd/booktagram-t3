@@ -16,7 +16,7 @@ import classes from './Modal.module.scss';
 
 interface MyModalProps {
   isOpen: boolean;
-  onClose?: () => void;
+  onClose?: () => void | undefined;
   children: React.ReactNode;
   loading?: boolean;
   title?: string;

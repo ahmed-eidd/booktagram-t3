@@ -1,0 +1,7 @@
+@import '../../../styles/index';
+
+.NavLang {
+  width: 24px;
+  height: 24px;
+  @include Flexing(center, center);
+}

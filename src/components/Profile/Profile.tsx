@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import BookShelf from '../BookShelf/BookShelf';
 import classes from './Profile.module.scss';
@@ -11,9 +12,16 @@ interface ProfileProps {
   description: string;
   activity: string;
   country: string;
+  createdAt: string;
 }
 
-const Profile = ({ name, description, activity, country }) => {
+const Profile: React.FC<ProfileProps> = ({
+  name,
+  description,
+  createdAt,
+  activity,
+  // country,
+}) => {
   return (
     <div className={classes.Profile}>
       <div className={classes.Profile__Info}>
@@ -26,13 +34,14 @@ const Profile = ({ name, description, activity, country }) => {
             <div className={classes.Profile__Info__EditBtn}>(Edit profile)</div>
           </Flex>
           <p className={classes.Profile__Info__Description}>
-            Mattis Molestie hasn't added any details yet.Mattis Molestie hasn't
-            added any details yet.Mattis Molestie hasn't added any details
+            {description ? description
+              : `${name} hasn't added any details yet.{name} hasn't added any details
+            yet.${name} hasn't added any details`}
           </p>
           <p className={classes.Profile__Info__Activity}>
-            <span>Activity</span>Joined in January 2014, last active this month
+            <span>Activity</span>Joined in {createdAt}
           </p>
-          <p className={classes.Profile__Info__Country}>Cairo, Egypt</p>
+          {/* <p className={classes.Profile__Info__Country}>Cairo, Egypt</p> */}
         </div>
       </div>
 

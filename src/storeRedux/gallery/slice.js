@@ -24,4 +24,3 @@ export const { fetchGallery, fetchGallerySuccess, fetchGalleryFail} = gallerySli
 
 export default gallerySlice.reducer
 
-console.log(gallerySlice.actions.fetchGallerySuccess().type);

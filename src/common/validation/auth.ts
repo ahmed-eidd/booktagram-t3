@@ -6,7 +6,12 @@ export const loginSchema = z.object({
 });
 
 export const signUpSchema = loginSchema.extend({
-  username: z.string(),
+  // username: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+  name: z.string(),
+  role: z.string(),
+  country: z.string(),
 });
 
 export type ILogin = z.infer<typeof loginSchema>;

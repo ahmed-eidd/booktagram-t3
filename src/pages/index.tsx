@@ -3,8 +3,11 @@ import { GetServerSidePropsContext } from 'next';
 import Header from '@/components/Pages/Home/Header/Header';
 import AboutSection from '@/components/Pages/Home/AboutSection/AboutSection';
 import Layout from '@/components/Layout/Layout';
+import { useSession } from 'next-auth/react';
 
 export default function Home() {
+  const { data } = useSession();
+  console.log(data);
   return (
     <Layout>
       <Header />

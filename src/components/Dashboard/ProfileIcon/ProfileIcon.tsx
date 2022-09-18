@@ -4,7 +4,7 @@ import Avatar2 from '../../../assests/avatar.jpg';
 import Image from 'next/image';
 
 interface ProfileIconProps {
-  name: string;
+  name: string | null | undefined;
 }
 
 const ProfileIcon: React.FC<ProfileIconProps> = ({ name }) => {
@@ -17,6 +17,7 @@ const ProfileIcon: React.FC<ProfileIconProps> = ({ name }) => {
         {/* {profile.firstName && profile.lastName
           ? profile.firstName + ' ' + profile.lastName
           : 'John Doe'} */}
+        {name}
       </p>
     </div>
   );

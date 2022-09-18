@@ -7,7 +7,7 @@ import { signUpSchema } from '@/common/validation/auth';
 export const serverRouter = createRouter().mutation('signup', {
   input: signUpSchema,
   resolve: async ({ input, ctx }) => {
-    const { email, password } = input;
+    const { email, password, name, role, country } = input;
 
     const exists = await ctx.prisma.user.findFirst({
       where: { email },
@@ -23,13 +23,19 @@ export const serverRouter = createRouter().mutation('signup', {
     const hashedPassword = await hash(password);
 
     const result = await ctx.prisma.user.create({
-      data: { email, password: hashedPassword },
+      data: {
+        email,
+        password: hashedPassword,
+        name,
+        role,
+        country: country ?? '',
+      },
     });
 
     return {
       status: 200,
       message: 'Account created successfully',
-      result: result.email,
+      result: result,
     };
   },
 });

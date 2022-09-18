@@ -7,10 +7,8 @@ function* fetchGallerySaga ({payload}) {
   try {
     const response = yield call(api.fetchGallery)
     yield put(fetchGallerySuccess(response.data))
-    console.log(response.data)
   } catch(error) {
     yield put(fetchGalleryFail())
-    console.log(error)
   }
 }
 

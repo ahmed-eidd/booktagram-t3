@@ -8,6 +8,10 @@ import Logo from '../../assests/logo.png';
 import Navitem from './NavItem/NavItem';
 import NavLang from './NavLang/NavLang';
 import Image from 'next/image';
+import { signOut, useSession } from 'next-auth/react';
+import Button from '../Button/Button';
+import { useRouter } from 'next/router';
+import { Flex } from '@chakra-ui/react';
 
 // const SIGN_IN = 'signin';
 // const SIGN_UP = 'signup';
@@ -17,6 +21,9 @@ const Nav = () => {
   const [scrollDir, setScrollDir] = useState('scrolling up');
   const [scrolling, setScrolling] = useState(false);
 
+  const { data } = useSession();
+  const router = useRouter();
+  console.log('session from nav', data);
   // const signUpOpen = () => {
   //   dispatch(setAuthModalOpen(SIGN_UP));
   // };
@@ -83,9 +90,9 @@ const Nav = () => {
           <Navitem to='/' translationId='nav_home' />
           <Navitem to='/news' translationId='nav_news' />
           <Navitem to='/events' translationId='nav_events' />
-          <Navitem to='/shop' translationId='nav_shop' />
-          <Navitem to='/clubs' translationId='nav_club' />
-          <Navitem to='/guide' translationId='nav_guide' />
+          {/* <Navitem to='/shop' translationId='nav_shop' /> */}
+          {/* <Navitem to='/clubs' translationId='nav_club' /> */}
+          {/* <Navitem to='/guide' translationId='nav_guide' /> */}
           <Navitem to='/about' translationId='nav_about' />
           <Navitem to='/contactus' translationId='nav_contactus' />
         </ul>
@@ -99,7 +106,15 @@ const Nav = () => {
         <Button variant='outline' onClick={signInOpen}>
           {f('nav_login')}
         </Button> */}
-        {/* <NavLang /> */}
+        <NavLang />
+        {data && (
+          <Flex gap='10px'>
+            <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
+            <Button variant='outline' onClick={signOut}>
+              Log out
+            </Button>
+          </Flex>
+        )}
       </div>
     </div>
   );

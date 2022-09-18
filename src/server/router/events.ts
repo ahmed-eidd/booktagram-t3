@@ -11,6 +11,7 @@ export const eventRouter = createRouter()
       date: z.date(),
       speakers: z.string(),
       time: z.string(),
+      description: z.string(),
     }),
     async resolve({ input }) {
       console.log('input from server', input);

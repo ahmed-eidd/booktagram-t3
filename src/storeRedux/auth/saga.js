@@ -29,12 +29,10 @@ function* loginSaga({ payload }) {
       payload.password
     );
     yield put(push('/success'))
-    console.log(result)
     yield put(loginUserSuccessAction());
     toastSuccess('Log in Success');
   } catch (error) {
     yield put(loginUserFailAction());
-    console.log(error);
     toastFail('error');
   }
 }

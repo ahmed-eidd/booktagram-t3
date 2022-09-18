@@ -1,19 +1,13 @@
 // import { Checkbox } from '@chakra-ui/checkbox';
 import Checkbox from '../Form/Checkbox/Checkbox';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '../Button/Button';
 import FormGroup from '../Form/FormGroup/FormGroup';
 import InputField from '../Form/InputField/InputField';
 import Modal from '../Modal/Modal';
 import * as yup from 'yup';
 import { Formik } from 'formik';
-// import { loginUser, signUpUser } from '../../storeRedux/auth/slice';
-// import { useDispatch, useSelector } from 'react-redux';
 import classes from './LoginModal.module.scss';
-// import { useFirebase } from 'react-redux-firebase';
-import { useToast } from '@chakra-ui/react';
-// import { loginUserAction } from '../../storeRedux/auth/action';
-// import { setAuthModalClose, setAuthModalOpen } from '../../storeRedux/auth/action';
 import { signIn as nextAuthSignIn } from 'next-auth/react';
 import { trpc } from '@/utils/trpc';
 
@@ -23,22 +17,33 @@ const SIGN_UP = 'signup';
 interface LoginModalProps {
   tab?: typeof SIGN_IN | typeof SIGN_UP;
   open: boolean;
-  close?: () => void;
+  close?: () => void | undefined;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ tab, open, close }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ open, close }) => {
   const [tabSwitch, setTabSwitch] = useState<typeof SIGN_IN | typeof SIGN_UP>(
     SIGN_IN
   );
   const createUserMutation = trpc.useMutation(['auth.signup']);
-  const toast = useToast();
 
   // TODO: Create login functions
-  const createNewUser = ({ email, password, firstName, lastName }) => {
+  const createNewUser = ({
+    email,
+    password,
+    firstName,
+    lastName,
+  }: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  }) => {
     createUserMutation.mutate({
       email: email,
       password: password,
-      username: firstName + lastName,
+      name: firstName + lastName,
+      role: 'admin',
+      country: 'egypt',
     });
   };
 
@@ -81,7 +86,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ tab, open, close }) => {
           await nextAuthSignIn('credentials', {
             email: values.email,
             password: values.password,
-            callbackUrl: '/',
+            callbackUrl: '/dashboard',
           });
         }}
       >
@@ -130,7 +135,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ tab, open, close }) => {
         onSubmit={(values) => {
           // dispatch(signUpUser(values))
           createNewUser(values);
-          console.log('new user ');
         }}
       >
         {() => (
@@ -174,7 +178,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ tab, open, close }) => {
   );
 
   return (
-    <Modal isOpen={open} onClose={() => console.log('clonsed')}>
+    <Modal isOpen={open} onClose={() => console.log('closed')}>
       <div className={classes.Container}>
         {tabSwitch === SIGN_IN && signIn}
         {tabSwitch === SIGN_UP && signUp}

@@ -20,6 +20,7 @@ const Home: NextPage = () => {
         speakers: 'Ahmed Eid',
         time: '12:00Pm',
         type: 'Offline',
+        desription: '',
       },
       {
         onSuccess: (req) => {

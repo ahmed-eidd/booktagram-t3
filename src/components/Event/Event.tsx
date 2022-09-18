@@ -4,22 +4,24 @@ import React from 'react';
 import classes from './Event.module.scss';
 
 interface EventProps {
-  day?: string;
+  day?: number;
   month?: string;
-  date?: string;
+  time?: number;
   title?: string;
   description?: string;
   location?: string;
   id?: number | string;
+  speakers: string;
 }
 
 const Event: React.FC<EventProps> = ({
   day,
   month,
-  date,
+  time,
   title,
   description,
   location,
+  speakers,
   id = 'ss',
 }) => {
   return (
@@ -38,11 +40,11 @@ const Event: React.FC<EventProps> = ({
         </p>
         <p className={classes.Event__Text}>
           <span>Time:</span>
-          {date || '12:45'}
+          {time || '12:45'}
         </p>
         <p className={classes.Event__Text}>
           <span>Speakers:</span>
-          Random Name
+          {speakers}
         </p>
       </div>
       {/* <Link href={`/event/${id}`}>

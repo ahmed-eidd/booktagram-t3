@@ -1,10 +1,24 @@
 import React from 'react';
-import ReactSelect from 'react-select';
-import { useField } from 'formik';
+import ReactSelect, { StylesConfig } from 'react-select';
+import { FieldHookConfig, useField } from 'formik';
 import { colors } from '../../../styles/abstract/colors';
 import FormControl from '../FormControl/FormControl';
 
-const Select = ({
+type MyOptionType = {
+  label: string;
+  value: string;
+};
+type IsMulti = false;
+
+interface SelectProps {
+  label?: string;
+  labelStyle?: React.CSSProperties;
+  placeholder?: string;
+  options: { label: string; value: string }[];
+  className?: string;
+}
+
+const Select: React.FC<SelectProps & FieldHookConfig<string>> = ({
   label,
   labelStyle,
   placeholder,
@@ -14,36 +28,36 @@ const Select = ({
 }) => {
   const [field, { error, touched }, helpers] = useField(props);
   const { setValue } = helpers;
-  const defaultValue = (options, value) => {
-    return options ? options.find((option) => option.value === value) : '';
+  const defaultValue = (
+    options: { value: string; label: string }[],
+    value: string
+  ) => {
+    return options ? options.find((option) => option?.value === value) : '';
   };
 
   const { grey, secondary } = colors;
   // styles
-  const colourStyles = {
+  const colourStyles: StylesConfig<MyOptionType, IsMulti> = {
     control: (styles) => ({
       ...styles,
       backgroundColor: secondary,
       border: `2px solid ${grey}`,
       ':hover:': {
-        ...styles[':hover:'],
         border: `1px solid ${grey}`,
       },
     }),
     dropdownIndicator: (styles) => ({ ...styles, color: grey }),
     indicatorSeparator: (styles) => ({ display: 'none' }),
     menu: (styles) => ({ ...styles, backgroundColor: secondary }),
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => ({
+    option: (styles, { isSelected }) => ({
       ...styles,
       backgroundColor: isSelected && grey,
       color: isSelected && secondary,
       ':active': {
-        ...styles[':active'],
         backgroundColor: grey,
         color: secondary,
       },
       ':hover': {
-        ...styles[':active'],
         backgroundColor: grey,
         color: secondary,
       },
@@ -63,7 +77,6 @@ const Select = ({
       field={field}
     >
       <ReactSelect
-      
         {...field}
         id={field.name}
         placeholder={placeholder}
@@ -71,10 +84,10 @@ const Select = ({
         styles={colourStyles}
         onChange={(value) => {
           if (value === null) {
-            setValue([]);
+            setValue('');
             return;
           }
-          setValue(value.value);
+          setValue(value?.value);
         }}
         value={defaultValue(options, field.value)}
         options={options}
