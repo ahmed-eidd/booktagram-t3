@@ -14,7 +14,6 @@ export const eventRouter = createRouter()
       description: z.string(),
     }),
     async resolve({ input }) {
-      console.log('input from server', input);
       const newEvent = await prisma.event.create({
         data: { ...input },
       });
