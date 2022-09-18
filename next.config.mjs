@@ -1,7 +1,4 @@
 import { env } from './src/env/server.mjs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
@@ -18,6 +15,8 @@ function defineNextConfig(config) {
 }
 
 export default defineNextConfig({
+  reactStrictMode: true,
+  swcMinify: true,
   i18n: {
     locales: ['ar', 'en'],
     defaultLocale: 'ar',
@@ -25,8 +24,6 @@ export default defineNextConfig({
 });
 
 // module.exports = {
-//   reactStrictMode: true,
-//   swcMinify: true,
 //   sassOptions: {
 //     includePaths: [path.join(__dirname, 'styles')],
 //   },
