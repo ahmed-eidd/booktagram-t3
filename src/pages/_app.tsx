@@ -15,18 +15,22 @@ import '../components/SplashScreen/SplashScreen.scss';
 import SplashScreen from '@/components/SplashScreen/SplashScreen';
 import { useStore } from '@/store';
 import { GetServerSidePropsContext } from 'next';
+import { AppProps } from 'next/app';
+import { Session } from 'next-auth';
 
-const removeLocaleFromUrl: (
-  url: string,
-  locale: string | undefined
-) => string = (url, locale) => {
-  return url === `/${locale}` ? '/' : url?.replace(`/${locale}`, '');
-};
+// const removeLocaleFromUrl: (
+//   url: string,
+//   locale: string | undefined
+// ) => string = (url, locale) => {
+//   return url === `/${locale}` ? '/' : url?.replace(`/${locale}`, '');
+// };
 
-const MyApp: AppType = ({
+const MyApp = ({
   Component,
-  pageProps: { session, ...pageProps },
-}) => {
+  pageProps,
+}: AppProps<{
+  session: Session;
+}>) => {
   const router = useRouter();
 
   const setLoading = useStore((state) => state.setLoading);
@@ -38,11 +42,9 @@ const MyApp: AppType = ({
     // const handleComplete = (url: string) =>
     //   removeLocaleFromUrl(url, router?.locale) === router.asPath &&
     //   setLoading(false);
-
     // router.events.on('routeChangeStart', handleStart);
     // router.events.on('routeChangeComplete', handleComplete);
     // router.events.on('routeChangeError', handleComplete);
-
     // return () => {
     //   router.events.off('routeChangeStart', handleStart);
     //   router.events.off('routeChangeComplete', handleComplete);
@@ -51,7 +53,7 @@ const MyApp: AppType = ({
   });
   return (
     <>
-      <SessionProvider session={session}>
+      <SessionProvider session={pageProps.session}>
         <ChakraProvider>
           <NextIntlProvider locale='ar' messages={pageProps.messages}>
             <SplashScreen />
