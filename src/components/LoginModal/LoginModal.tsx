@@ -20,7 +20,7 @@ interface LoginModalProps {
   close?: () => void | undefined;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ open, close }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ open, }) => {
   const [tabSwitch, setTabSwitch] = useState<typeof SIGN_IN | typeof SIGN_UP>(
     SIGN_IN
   );
