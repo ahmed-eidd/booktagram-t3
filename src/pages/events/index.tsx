@@ -8,8 +8,8 @@ import { trpc } from '@/utils/trpc';
 import { monthNames } from '@/utilities/monthNames';
 
 const events = () => {
-  const { data, isLoading } = trpc.useQuery(['eventgetAllEvents'], {
-    refetchOnMount: true, 
+  const { data, isLoading } = trpc.useQuery(['event.getAllEvents'], {
+    refetchOnMount: true,
   });
   return (
     <Layout>
@@ -49,7 +49,6 @@ export default events;
 export async function getServerSideProps({
   locale,
 }: GetServerSidePropsContext) {
-
   return {
     props: {
       // You can get the messages from anywhere you like. The recommended

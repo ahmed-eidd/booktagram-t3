@@ -25,7 +25,7 @@ export const schema = Yup.object().shape({
 });
 
 const AddEvent = () => {
-  const eventMutate = trpc.useMutation(['eventaddEvent']);
+  const eventMutate = trpc.useMutation(['event.addEvent']);
   const router = useRouter();
   return (
     <Dashboard>

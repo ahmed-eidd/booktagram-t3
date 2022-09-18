@@ -11,7 +11,7 @@ import React from 'react';
 
 const Events = () => {
   const router = useRouter();
-  const { data, isLoading } = trpc.useQuery(['eventgetAllEvents'], {
+  const { data, isLoading } = trpc.useQuery(['event.getAllEvents'], {
     refetchOnMount: true,
   });
   return (
