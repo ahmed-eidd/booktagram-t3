@@ -48,12 +48,7 @@ export default events;
 
 export async function getServerSideProps({
   locale,
-  ...context
 }: GetServerSidePropsContext) {
-  /* Checking if the user is logged in. If not, it redirects to the home page. */
-  // const session = await getSession(context);
-  // console.log(session);
-  const session = await getSession(context);
 
   return {
     props: {
@@ -61,7 +56,6 @@ export async function getServerSideProps({
       // pattern is to put them in JSON files separated by language and read
       // the desired one based on the `locale` received from Next.js.
       messages: (await import(`../../content/locale/${locale}.json`)).default,
-      session,
     },
   };
 }

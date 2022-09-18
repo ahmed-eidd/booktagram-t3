@@ -11,7 +11,7 @@ export const appRouter = createRouter()
   .merge('example.', exampleRouter)
   // .merge('auth.', protectedExampleRouter)
   .merge('auth.', serverRouter)
-  .merge('event', eventRouter);
+  .merge('event.', eventRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;
