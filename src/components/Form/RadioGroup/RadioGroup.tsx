@@ -9,7 +9,12 @@ interface RadioGroupProps {
   onChange: () => void;
 }
 
-const RadioGroup:React.FC<RadioGroupProps> = ({ value, children, title, onChange, ...props }) => {
+const RadioGroup: React.FC<RadioGroupProps> = ({
+  value,
+  children,
+  title,
+  onChange,
+}) => {
   return (
     <ChakraRadioGroup
       className={classes.RadioGroup}

@@ -4,14 +4,15 @@ import classes from './Card.module.scss';
 import Img from '../../assests/news/Background.jpg';
 import Image from 'next/image';
 
-interface CardProps {
-  subTitle?: string;
-  title?: string;
-  text?: string;
-  btn?: string;
-}
+// interface CardProps { // the props that shout ba taken
+//   subTitle?: string;
+//   title?: string;
+//   text?: string;
+//   btn?: string;
+// }
 
-const Card: React.FC<CardProps> = ({ subTitle, title, text, btn }) => {
+// const Card: React.FC<CardProps> = ({ subTitle, title, text, btn }) => {
+const Card: React.FC = () => {
   return (
     <div className={classes.Card}>
       <div className={classes.Date}>

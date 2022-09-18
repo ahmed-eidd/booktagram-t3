@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactSelect from 'react-select';
-import {
-  StylesProps,
-  StylesConfig,
-} from 'react-select/dist/declarations/src/styles';
+// import {
+//   StylesProps,
+//   StylesConfig,
+// } from 'react-select/dist/declarations/src/styles';
 import { FieldHookConfig, useField } from 'formik';
-import { colors } from '../../../styles/abstract/colors';
+// import { colors } from '../../../styles/abstract/colors';
 import FormControl from '../FormControl/FormControl';
 
-type MyOptionType = {
-  label: string;
-  value: string;
-};
-type IsMulti = false;
+// type MyOptionType = {
+//   label: string;
+//   value: string;
+// };
+// type IsMulti = false;
 
 interface SelectProps {
   label?: string;
@@ -46,37 +46,37 @@ const Select: React.FC<SelectProps & FieldHookConfig<string>> = ({
   //   color: secondary,
   // };
 
-  const { grey, secondary } = colors;
+  // const { grey, secondary } = colors;
   // styles
-  const colourStyles: StylesConfig<MyOptionType, IsMulti> = {
-    control: (styles) => ({
-      ...styles,
-      backgroundColor: secondary,
-      border: `2px solid ${grey}`,
-      ':hover:': {
-        border: `1px solid ${grey}`,
-      },
-    }),
-    dropdownIndicator: (styles) => ({ ...styles, color: grey }),
-    // indicatorSeparator: (styles) => ({ display: 'none' }),
-    menu: (styles) => ({ ...styles, backgroundColor: secondary }),
-    option: (styles, { isSelected }) => ({
-      ...styles,
-      // backgroundColor: isSelected && grey,
-      // color: isSelected && secondary,
-      ':active': {
-        backgroundColor: grey,
-        color: secondary,
-      },
-      ':hover': {
-        backgroundColor: grey,
-        color: secondary,
-      },
-    }),
-    input: (styles) => ({ ...styles }),
-    placeholder: (styles) => ({ ...styles }),
-    singleValue: (styles, { data }) => ({ ...styles }),
-  };
+  // const colourStyles: StylesConfig<MyOptionType, IsMulti> = {
+  //   control: (styles) => ({
+  //     ...styles,
+  //     backgroundColor: secondary,
+  //     border: `2px solid ${grey}`,
+  //     ':hover:': {
+  //       border: `1px solid ${grey}`,
+  //     },
+  //   }),
+  //   dropdownIndicator: (styles) => ({ ...styles, color: grey }),
+  //   // indicatorSeparator: (styles) => ({ display: 'none' }),
+  //   menu: (styles) => ({ ...styles, backgroundColor: secondary }),
+  //   option: (styles, { isSelected }) => ({
+  //     ...styles,
+  //     // backgroundColor: isSelected && grey,
+  //     // color: isSelected && secondary,
+  //     ':active': {
+  //       backgroundColor: grey,
+  //       color: secondary,
+  //     },
+  //     ':hover': {
+  //       backgroundColor: grey,
+  //       color: secondary,
+  //     },
+  //   }),
+  //   input: (styles) => ({ ...styles }),
+  //   placeholder: (styles) => ({ ...styles }),
+  //   singleValue: (styles, { data }) => ({ ...styles }),
+  // };
 
   return (
     <FormControl

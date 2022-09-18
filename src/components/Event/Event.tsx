@@ -19,7 +19,7 @@ const Event: React.FC<EventProps> = ({
   month,
   time,
   title,
-  description,
+  // description,
   location,
   speakers,
   id = 'ss',

@@ -18,7 +18,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 }) => {
   return (
     <Field name={name}>
-      {({ field, form }: FieldProps) => (
+      {({ form }: FieldProps) => (
         <CharkaCheckbox
           defaultChecked={checked}
           iconColor='#21545F'

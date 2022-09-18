@@ -3,7 +3,6 @@ import classes from './Nav.module.scss';
 import Link from 'next/link';
 // import { setAuthModalOpen } from '../../storeRedux/auth/action';
 // import { useDispatch } from 'react-redux';
-import LoginModal from '../LoginModal/LoginModal';
 import Logo from '../../assests/logo.png';
 import Navitem from './NavItem/NavItem';
 import NavLang from './NavLang/NavLang';

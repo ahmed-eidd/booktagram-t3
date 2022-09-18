@@ -8,32 +8,28 @@ import TextArea from '@/components/Form/TextArea/TextArea';
 import { trpc } from '@/utils/trpc';
 import { Box } from '@chakra-ui/react';
 import { Formik } from 'formik';
-import moment from 'moment';
 import { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { QueryClient, useMutation, useQueryClient } from 'react-query';
 import { schema } from './add-event.schema';
 
 const AddEvent = () => {
   const eventMutate = trpc.useMutation(['eventaddEvent']);
   const router = useRouter();
-  const queryClient = useQueryClient();
   return (
     <Dashboard>
       <Box>
         <Formik
           onSubmit={(values) => {
-            console.log(values)
-            // eventMutate.mutate(
-            //   { ...values, time: values.time.toString() },
-            //   {
-            //     onSuccess: () => {
-            //       router.push('/dashboard/events');
-            //     },
-            //   }
-            // );
+            eventMutate.mutate(
+              { ...values, time: values.time.toString() },
+              {
+                onSuccess: () => {
+                  router.push('/dashboard/events');
+                },
+              }
+            );
           }}
           validationSchema={schema}
           initialValues={schema.cast({})}

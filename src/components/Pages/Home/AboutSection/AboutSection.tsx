@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './AboutSection.module.scss';
-import { useIntl } from 'react-intl';
 import AboutCard from './AboutCard/AboutCard';
 import { useTranslations } from 'next-intl';
 

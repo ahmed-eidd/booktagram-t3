@@ -1,6 +1,5 @@
 import React from 'react';
 import classes from './AboutCard.module.scss';
-import { useIntl } from 'react-intl';
 import { useTranslations } from 'next-intl';
 
 const AboutCard = ({ title, des, iconClass }) => {

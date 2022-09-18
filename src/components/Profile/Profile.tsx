@@ -19,7 +19,7 @@ const Profile: React.FC<ProfileProps> = ({
   name,
   description,
   createdAt,
-  activity,
+  // activity,
   // country,
 }) => {
   return (

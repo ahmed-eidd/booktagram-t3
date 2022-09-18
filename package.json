@@ -20,7 +20,6 @@
     "@trpc/react": "^9.27.2",
     "@trpc/server": "^9.27.2",
     "@types/react-datepicker": "^4.4.2",
-    "@types/react-select": "^5.0.1",
     "argon2": "^0.29.1",
     "formik": "^2.2.9",
     "framer-motion": "^7.2.1",

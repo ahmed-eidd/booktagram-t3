@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import classes from './Calendar.module.scss';
 import 'react-datepicker/dist/react-datepicker.css';
 import FormControl from '../FormControl/FormControl';

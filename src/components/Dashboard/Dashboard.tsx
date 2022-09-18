@@ -1,4 +1,4 @@
-import { GetServerSidePropsContext } from 'next';
+// import { GetServerSidePropsContext } from 'next';
 import React from 'react';
 import classes from './Dashboard.module.scss';
 import Sidebar from './Sidebar/Sidebar';

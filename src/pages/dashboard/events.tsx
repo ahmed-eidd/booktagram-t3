@@ -3,7 +3,7 @@ import Dashboard from '@/components/Dashboard/Dashboard';
 import Event from '@/components/Event/Event';
 import { monthNames } from '@/utilities/monthNames';
 import { trpc } from '@/utils/trpc';
-import { Box, Flex, Heading, Spinner, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spinner, Stack  } from '@chakra-ui/react';
 import { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

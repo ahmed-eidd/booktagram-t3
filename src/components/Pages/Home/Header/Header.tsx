@@ -1,10 +1,7 @@
 import React from 'react';
 import Button from '../../../Button/Button';
 import classes from './Header.module.scss';
-import { useIntl } from 'react-intl';
 // import HeaderImg from '../../../../assests/Group_3642x.png';
-import HeaderImg from '../../../../assests/main-background.png';
-import Image from 'next/image';
 import { GetServerSidePropsContext } from 'next';
 import { useTranslations } from 'next-intl';
 // import { setAuthModalOpen } from '../../../../storeRedux/auth/action';

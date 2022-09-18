@@ -6,7 +6,6 @@ import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
 import { SessionProvider } from 'next-auth/react';
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl';
-import type { AppType } from 'next/dist/shared/lib/utils';
 import { useRouter } from 'next/router';
 import superjson from 'superjson';
 import type { AppRouter } from '../server/router';
@@ -14,16 +13,15 @@ import '../styles/globals.scss';
 import '../components/SplashScreen/SplashScreen.scss';
 import SplashScreen from '@/components/SplashScreen/SplashScreen';
 import { useStore } from '@/store';
-import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import { Session } from 'next-auth';
 
-// const removeLocaleFromUrl: (
-//   url: string,
-//   locale: string | undefined
-// ) => string = (url, locale) => {
-//   return url === `/${locale}` ? '/' : url?.replace(`/${locale}`, '');
-// };
+const removeLocaleFromUrl: (
+  url: string,
+  locale: string | undefined
+) => string = (url, locale) => {
+  return url === `/${locale}` ? '/' : url?.replace(`/${locale}`, '');
+};
 
 const MyApp = ({
   Component,
@@ -37,20 +35,20 @@ const MyApp = ({
   const setLoading = useStore((state) => state.setLoading);
 
   useEffect(() => {
-    // const handleStart = (url: string) =>
-    //   removeLocaleFromUrl(url, router?.locale) !== router.asPath &&
-    //   setLoading(true);
-    // const handleComplete = (url: string) =>
-    //   removeLocaleFromUrl(url, router?.locale) === router.asPath &&
-    //   setLoading(false);
-    // router.events.on('routeChangeStart', handleStart);
-    // router.events.on('routeChangeComplete', handleComplete);
-    // router.events.on('routeChangeError', handleComplete);
-    // return () => {
-    //   router.events.off('routeChangeStart', handleStart);
-    //   router.events.off('routeChangeComplete', handleComplete);
-    //   router.events.off('routeChangeError', handleComplete);
-    // };
+    const handleStart = (url: string) =>
+      removeLocaleFromUrl(url, router?.locale) !== router.asPath &&
+      setLoading(true);
+    const handleComplete = (url: string) =>
+      removeLocaleFromUrl(url, router?.locale) === router.asPath &&
+      setLoading(false);
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+    return () => {
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
   });
   return (
     <>

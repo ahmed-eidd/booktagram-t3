@@ -4,7 +4,7 @@ import {
   FormLabel,
   FormErrorMessage,
 } from '@chakra-ui/react';
-import { FieldProps, FieldConfig } from 'formik';
+import { FieldConfig } from 'formik';
 
 interface FormControlProps {
   className?: string;
