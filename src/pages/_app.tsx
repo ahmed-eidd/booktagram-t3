@@ -5,7 +5,7 @@ import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
 import { SessionProvider } from 'next-auth/react';
-import { NextIntlProvider } from 'next-intl';
+import { AbstractIntlMessages, NextIntlProvider } from 'next-intl';
 import type { AppType } from 'next/dist/shared/lib/utils';
 import { useRouter } from 'next/router';
 import superjson from 'superjson';
@@ -29,6 +29,7 @@ const MyApp = ({
   Component,
   pageProps,
 }: AppProps<{
+  messages: AbstractIntlMessages | undefined;
   session: Session;
 }>) => {
   const router = useRouter();
@@ -55,7 +56,7 @@ const MyApp = ({
     <>
       <SessionProvider session={pageProps.session}>
         <ChakraProvider>
-          <NextIntlProvider locale='ar' messages={pageProps.messages}>
+          <NextIntlProvider locale='ar' messages={pageProps?.messages}>
             <SplashScreen />
             <Component {...pageProps} />
           </NextIntlProvider>
