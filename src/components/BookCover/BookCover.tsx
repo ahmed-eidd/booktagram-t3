@@ -1,5 +1,5 @@
 import React from 'react';
-import { extendClasses } from '../../../utilities/extendClasses';
+import { extendClasses } from '../../utilities/extendClasses'
 import classes from './BookCover.module.scss';
 
 interface BookCoverProps {
