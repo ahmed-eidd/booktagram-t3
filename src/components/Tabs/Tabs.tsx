@@ -1,6 +1,6 @@
 import { Tabs as CTabs, TabList, TabPanels, Tab } from '@chakra-ui/react';
 import classes from './Tabs.module.scss';
-import { colors } from '../../../styles/abstract/colors';
+import { colors } from '../../styles/abstract/colors';
 
 interface TabsProps {
   tabs: string[];
