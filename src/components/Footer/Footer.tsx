@@ -1,10 +1,9 @@
 import React from 'react';
 import classes from './Footer.module.scss';
-import { useIntl } from 'react-intl';
 import FooterLink from './FooterLink/FooterLink';
 import { Input } from '@chakra-ui/react';
 import Button from '../Button/Button';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 
 const Footer = () => {
   // const { formatMessage } = useIntl();

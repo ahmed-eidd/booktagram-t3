@@ -26,14 +26,14 @@ const AddEvent = () => {
         <Formik
           onSubmit={(values) => {
             console.log(values)
-            eventMutate.mutate(
-              { ...values, time: values.time.toString() },
-              {
-                onSuccess: () => {
-                  router.push('/dashboard/events');
-                },
-              }
-            );
+            // eventMutate.mutate(
+            //   { ...values, time: values.time.toString() },
+            //   {
+            //     onSuccess: () => {
+            //       router.push('/dashboard/events');
+            //     },
+            //   }
+            // );
           }}
           validationSchema={schema}
           initialValues={schema.cast({})}

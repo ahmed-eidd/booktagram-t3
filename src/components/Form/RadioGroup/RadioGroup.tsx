@@ -2,7 +2,14 @@ import React from 'react';
 import classes from './RadioGroup.module.scss';
 import { RadioGroup as ChakraRadioGroup } from '@chakra-ui/react';
 
-const RadioGroup = ({ value, children, title, onChange, ...props }) => {
+interface RadioGroupProps {
+  value: string | number;
+  children?: React.ReactNode;
+  title: string;
+  onChange: () => void;
+}
+
+const RadioGroup:React.FC<RadioGroupProps> = ({ value, children, title, onChange, ...props }) => {
   return (
     <ChakraRadioGroup
       className={classes.RadioGroup}

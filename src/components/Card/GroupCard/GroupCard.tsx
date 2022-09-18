@@ -1,24 +1,24 @@
 import React from 'react';
 
 import classes from './GroupCard.module.scss';
-import {Link} from 'react-router-dom'
 import Background from '../../../assests/news/Background.jpg';
 import ProfileImg from '../../../assests/news/test.png';
+import Link from 'next/link';
+import Image from 'next/image';
 
 const GroupCard = () => {
   return (
     <div className={classes.GroupCard}>
-      <Link className={classes.Link} to="/clubs/randomid"></Link>
+      <Link href='/clubs/randomid'>
+        <a className={classes.Link}></a>
+      </Link>
       <div className={classes.ImgContainer}>
         <div className={classes.BgImg}>
-          <img
-            src={Background}
-            alt='logo'
-          />
+          <Image src={Background} alt='logo' />
         </div>
 
         <div className={classes.ImgCircle}>
-          <img src={ProfileImg} alt='profile img' />
+          <Image src={ProfileImg} alt='profile img' />
         </div>
       </div>
       <h3 className={classes.Title}>Loerm Ipsum Book Club</h3>
@@ -29,11 +29,10 @@ const GroupCard = () => {
       </p>
       <div className={classes.IconsContainer}>
         <div>
-          <i className="fas fa-users"></i> 888 members
+          <i className='fas fa-users'></i> 888 members
         </div>
         <div>
-          <i className="fas fa-map-marker-alt"></i>
-          6 October, Giza
+          <i className='fas fa-map-marker-alt'></i>6 October, Giza
         </div>
       </div>
     </div>

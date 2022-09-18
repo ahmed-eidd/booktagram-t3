@@ -2,7 +2,7 @@ import React from 'react';
 import { TabPanel as CTabPanel } from '@chakra-ui/react';
 
 interface TabPanelProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const TabPanel: React.FC<TabPanelProps> = ({ children, ...props }) => {

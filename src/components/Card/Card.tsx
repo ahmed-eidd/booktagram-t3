@@ -2,9 +2,16 @@ import React from 'react';
 import Button from '../Button/Button';
 import classes from './Card.module.scss';
 import Img from '../../assests/news/Background.jpg';
+import Image from 'next/image';
 
+interface CardProps {
+  subTitle?: string;
+  title?: string;
+  text?: string;
+  btn?: string;
+}
 
-const Card = ({ subTitle, title, text, btn }) => {
+const Card: React.FC<CardProps> = ({ subTitle, title, text, btn }) => {
   return (
     <div className={classes.Card}>
       <div className={classes.Date}>
@@ -12,10 +19,7 @@ const Card = ({ subTitle, title, text, btn }) => {
         <p>Mar</p>
       </div>
       <div className={classes.CardImg}>
-        <img
-        src={Img}
-        alt='card img'
-        />
+        <Image src={Img} alt='card img' />
       </div>
       <div className={classes.CardInfo}>
         <h6 className={classes.SubTitle}>Category Name | March14, 2021</h6>
@@ -26,7 +30,7 @@ const Card = ({ subTitle, title, text, btn }) => {
           Excepteur sint occaecat cupidatat non sint proident, sunt in culpa qui
           officia indese no runt mollit aim id est sint laborum.
         </p>
-        <Button type="link" to="#">
+        <Button type='link' to='#'>
           Learn More
         </Button>
       </div>

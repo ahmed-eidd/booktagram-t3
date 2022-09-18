@@ -3,10 +3,10 @@ import classes from './Tabs.module.scss';
 import { colors } from '../../styles/abstract/colors';
 
 interface TabsProps {
-  tabs: string[];
-  className: string;
-  children: React.ReactNode;
-  justify:
+  tabs?: string[];
+  className?: string;
+  children?: React.ReactNode;
+  justify?:
     | 'center'
     | 'space-around'
     | 'space-between'

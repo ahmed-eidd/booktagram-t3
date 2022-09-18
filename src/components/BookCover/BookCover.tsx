@@ -1,18 +1,19 @@
+import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-import { extendClasses } from '../../utilities/extendClasses'
+import { extendClasses } from '../../utilities/extendClasses';
 import classes from './BookCover.module.scss';
 
 interface BookCoverProps {
-  cover: string;
-  title: string;
-  author: string;
-  date: string;
-  price: string;
-  location: string;
-  children: React.ReactNode;
-  onClick: () => void;
-  hoverOn: boolean;
-  className: string;
+  cover: StaticImageData;
+  title?: string;
+  author?: string;
+  date?: string;
+  price?: string;
+  location?: string;
+  children?: React.ReactNode;
+  onClick?: () => void;
+  hoverOn?: boolean;
+  className?: string;
 }
 
 const BookCover: React.FC<BookCoverProps> = ({
@@ -37,7 +38,7 @@ const BookCover: React.FC<BookCoverProps> = ({
       onClick={onClick}
     >
       <div className={classes.Book__Cover}>
-        <img src={cover} alt='book cover' />
+        <Image src={cover} alt='book cover' />
       </div>
       <div className={classes.Book__Info}>
         <h3 className={classes.Book__Info__Title}>{title}</h3>

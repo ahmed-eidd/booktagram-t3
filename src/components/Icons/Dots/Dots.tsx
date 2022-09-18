@@ -1,7 +1,13 @@
 import React from 'react';
 import classes from './Dots.module.scss';
 
-const Dots = ({ className, style, onClick }) => {
+interface DotsProps {
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+}
+
+const Dots: React.FC<DotsProps> = ({ className, style, onClick }) => {
   return (
     <div
       onClick={onClick}

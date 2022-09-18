@@ -4,8 +4,29 @@ import {
   FormLabel,
   FormErrorMessage,
 } from '@chakra-ui/react';
+import { FieldProps, FieldConfig } from 'formik';
 
-const FormControl = ({ className, error, touched, style,label,labelStyle,children,field }) => {
+interface FormControlProps {
+  className?: string;
+  error?: string;
+  touched?: boolean;
+  style?: React.CSSProperties;
+  label?: string;
+  labelStyle?: React.CSSProperties;
+  children?: React.ReactNode;
+  field?: FieldConfig<string>;
+}
+
+const FormControl: React.FC<FormControlProps> = ({
+  className,
+  error,
+  touched,
+  style,
+  label,
+  labelStyle,
+  children,
+  field,
+}) => {
   return (
     <CFormControl
       style={{
@@ -15,7 +36,7 @@ const FormControl = ({ className, error, touched, style,label,labelStyle,childre
         ...style,
       }}
       my={7}
-      isInvalid={error && touched}
+      // isInvalid={error && touched}
       className={className}
     >
       {label && (

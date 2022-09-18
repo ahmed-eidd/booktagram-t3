@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 import classes from './WideCard.module.scss';
 
@@ -5,7 +6,7 @@ const WideCard = () => {
   return (
     <div className={classes.WideCard}>
       <div className={classes.ImgContainer}>
-        <img
+        <Image
           src='/assests/news/Background.jpg'
           layout='fill'
           objectFit='cover'

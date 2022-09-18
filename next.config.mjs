@@ -1,4 +1,3 @@
-
 // const __filename = fileURLToPath(import.meta.url);
 // const __dirname = dirname(__filename);
 /**
@@ -18,7 +17,6 @@ export default defineNextConfig({
   swcMinify: true,
   typescript: {
     // TODO REMOVE THAT THING LATER
-    ignoreBuildErrors: true
   },
   i18n: {
     locales: ['ar', 'en'],
