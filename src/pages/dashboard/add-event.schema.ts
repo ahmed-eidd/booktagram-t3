@@ -7,4 +7,5 @@ export const schema = Yup.object().shape({
   speakers: Yup.string().default('').required(),
   time: Yup.string().default('').required(),
   date: Yup.date().default(new Date()).required(),
+  description: Yup.string().default('').required(),
 });

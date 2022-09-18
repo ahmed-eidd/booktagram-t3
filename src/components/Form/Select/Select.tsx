@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactSelect from 'react-select';
-import {StylesProps, StylesConfig} from 'react-select/dist/declarations/src/styles'
+import {
+  StylesProps,
+  StylesConfig,
+} from 'react-select/dist/declarations/src/styles';
 import { FieldHookConfig, useField } from 'formik';
 import { colors } from '../../../styles/abstract/colors';
 import FormControl from '../FormControl/FormControl';
@@ -17,7 +20,7 @@ interface SelectProps {
   placeholder?: string;
   options: { label: string; value: string }[];
   className?: string;
-  style: React.CSSProperties;
+  style?: React.CSSProperties;
 }
 
 const Select: React.FC<SelectProps & FieldHookConfig<string>> = ({

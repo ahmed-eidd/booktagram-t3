@@ -19,9 +19,14 @@ interface customInputProps {
 }
 export type Ref = HTMLButtonElement;
 
-const FormCalendar: React.FC<
-  FormCalendarProps & FieldHookConfig<string> & ReactDatePickerProps
-> = ({ className, label, labelStyle, style, minDate, ...props }) => {
+const FormCalendar: React.FC<FormCalendarProps & FieldHookConfig<string>> = ({
+  className,
+  label,
+  labelStyle,
+  style,
+  minDate,
+  ...props
+}) => {
   // const [date, setDate] = useState(new Date());
 
   // eslint-disable-next-line react/display-name

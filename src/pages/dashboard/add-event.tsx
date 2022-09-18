@@ -25,6 +25,7 @@ const AddEvent = () => {
       <Box>
         <Formik
           onSubmit={(values) => {
+            console.log(values)
             eventMutate.mutate(
               { ...values, time: values.time.toString() },
               {
