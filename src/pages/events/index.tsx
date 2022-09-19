@@ -3,7 +3,7 @@ import React from 'react';
 import Event from '@/components/Event/Event';
 import Layout from '@/components/Layout/Layout';
 import { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/react';
+// import { getSession } from 'next-auth/react';
 import { trpc } from '@/utils/trpc';
 import { monthNames } from '@/utilities/monthNames';
 

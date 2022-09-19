@@ -4,10 +4,12 @@ import SidebarItem from '../SidebarItem/SidebarItem';
 import ProfileIcon from '../ProfileIcon/ProfileIcon';
 import { useTranslations } from 'next-intl';
 import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Sidebar = () => {
   const t = useTranslations('');
   const { data: sessionData } = useSession();
+  const router = useRouter();
   return (
     <div className={classes.Sidebar}>
       <ProfileIcon name={sessionData?.user?.name} />
@@ -45,7 +47,7 @@ const Sidebar = () => {
             {t('nav_accountSetting')}
           </SidebarItem> */}
           <SidebarItem
-            onClick={signOut}
+            onClick={() => signOut().then(() => router.push('/'))}
             to='/logout'
             icon='fas fa-sign-out-alt'
           >

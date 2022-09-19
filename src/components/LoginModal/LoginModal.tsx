@@ -10,6 +10,7 @@ import { Formik } from 'formik';
 import classes from './LoginModal.module.scss';
 import { signIn as nextAuthSignIn } from 'next-auth/react';
 import { trpc } from '@/utils/trpc';
+import { useRouter } from 'next/router';
 
 const SIGN_IN = 'signin';
 const SIGN_UP = 'signup';
@@ -20,11 +21,12 @@ interface LoginModalProps {
   close?: () => void | undefined;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ open, }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ open }) => {
   const [tabSwitch, setTabSwitch] = useState<typeof SIGN_IN | typeof SIGN_UP>(
     SIGN_IN
   );
   const createUserMutation = trpc.useMutation(['auth.signup']);
+  const router = useRouter();
 
   // TODO: Create login functions
   const createNewUser = ({
@@ -87,6 +89,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ open, }) => {
             email: values.email,
             password: values.password,
             callbackUrl: '/dashboard',
+          }).then(() => {
+            router.push('/dashboard');
           });
         }}
       >

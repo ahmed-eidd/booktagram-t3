@@ -9,7 +9,7 @@ import { trpc } from '@/utils/trpc';
 import { Box } from '@chakra-ui/react';
 import { Formik } from 'formik';
 import { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import React from 'react';
 import * as Yup from 'yup';
@@ -27,6 +27,11 @@ export const schema = Yup.object().shape({
 const AddEvent = () => {
   const eventMutate = trpc.useMutation(['event.addEvent']);
   const router = useRouter();
+  // const { data: session } = useSession();
+
+  // if (!session) {
+  //   router.push('/');
+  // }
   return (
     <Dashboard>
       <Box>
@@ -101,17 +106,17 @@ export default AddEvent;
 
 export async function getServerSideProps({
   locale,
-  ...context
+  // ...context
 }: GetServerSidePropsContext) {
-  const session = await getSession(context);
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
+  // const session = await getSession(context);
+  // if (!session) {
+  //   return {
+  //     redirect: {
+  //       destination: '/login',
+  //       permanent: false,
+  //     },
+  //   };
+  // }
   return {
     props: {
       // You can get the messages from anywhere you like. The recommended
